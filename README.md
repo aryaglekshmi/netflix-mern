@@ -1,2 +1,10 @@
-# netflix-mern
-Netflix-like app built using the MERN stack with JWT authentication, featuring user authentication, movie browsing, and more.
+Features
+User Registration and Login (with JWT)
+Movie Browsing
+Personalized Recommendations
+Responsive UI using Tailwind CSS
+Tech Stack
+Frontend: React, Tailwind CSS
+Backend: Node.js, Express.js
+Database: MongoDB
+Authentication: JWT
