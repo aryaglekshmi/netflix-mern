@@ -13,7 +13,7 @@ const createUser = async (user) => {
 const login = async (loginUser) => {
   const user = await User.findOne({ email: loginUser.email });
   if (user) {
-    const originalPwd = general.decryptPassword(user.password);
+    const originalPwd = general.decryptPassword(user.password)
     if (loginUser.password !== originalPwd) return null;
     
     const accessToken = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.SECRET_KEY, { expiresIn:'1h'});
