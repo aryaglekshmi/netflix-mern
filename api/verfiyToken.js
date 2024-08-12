@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-export function verifyToken(req, res, next) {
-  const authHeader = req.headers.token;
+ function verifyToken(req, res, next) {
+  const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
@@ -13,3 +13,5 @@ export function verifyToken(req, res, next) {
     return res.status(401).json("Oops! Not authenticated");
   }
 }
+
+module.exports = verifyToken;

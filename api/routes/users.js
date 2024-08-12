@@ -1,8 +1,12 @@
 const router = require('express').Router()
-const User = require("../models/user");
-const CryptoJS = require('crypto-js');
-const userContrller = require("../controllers/user")
+const userController = require("../controllers/user")
+const verifyToken = require("../verfiyToken")
 
-router.put(":/id", userContrller.update)
+router
+.get('/stats',userController.getUserStats )
+.put("/:id", verifyToken ,userController.update)
+.delete("/:id", verifyToken ,userController.deleteUser)
+.get("/:id", verifyToken , userController.getUser)
+.get("/", verifyToken , userController.getAllUser)
 
 module.exports = router;
