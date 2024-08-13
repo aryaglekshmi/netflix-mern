@@ -41,8 +41,6 @@ const getAllUser = async(query) => {
 }
 
 const getUserStats = async () => {
-  const today = new Date();
-  const lastYear = new Date(today.setFullYear(today.getFullYear() - 1));
 
   const data = await User.aggregate([
     {
