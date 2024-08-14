@@ -61,12 +61,8 @@ const getList = async (req, res) => {
 };
 
 const getAllLists = async (req, res) => {
-  if (!req.user.isAdmin) {
-    res.status(403).json({ success: false, data: null, message: 'Only admin can fetch all lists!' });
-    return;
-  }
   try {
-    const lists = await listService.getAllLists(req.query?.new);
+    const lists = await listService.getAllLists(req.query?.type, req.query?.genre);
     if (!lists) {
       return res.status(404).json({ success: false, data: null, message: 'Lists not found.' });
     }

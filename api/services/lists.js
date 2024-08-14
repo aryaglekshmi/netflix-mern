@@ -19,9 +19,17 @@ const getList = async (id) => {
   return await List.findById(id);
 };
 
-const getAllLists = async (query) => {
-  return await query ? List.find().sort({ _id: -1 }).limit(query) : List.find();
+const getAllLists = async (type, genre) => {
+  const matchCriteria = {};
+  if (type) matchCriteria.type = type;
+  if (genre) matchCriteria.genre = genre;
+
+  return await List.aggregate([
+    { $match: matchCriteria },
+    { $sample: { size: 10 } },
+  ]);
 };
+  
 
 const getListStats = async () => {
   const data = await List.aggregate([
