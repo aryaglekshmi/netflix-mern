@@ -1,0 +1,109 @@
+:root {
+  --netflix-red: #E50914;
+  --dark-bg: #141414;
+  --light-gray: #B3B3B3;
+  --white: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.parentBody {
+  color: var(--white);
+  font-family: Arial, sans-serif;
+  background-color: var(--dark-bg);
+}
+html,body {
+  height: 100%;
+  width: 100%;
+}
+
+.icon {
+  color: var(--netflix-red);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--netflix-red);
+  border-radius: 6px;
+  border: 3px solid var(--dark-bg);
+}
+.iconRed {
+  color: #e50914;
+  cursor: pointer;
+}
+
+.btn-main {
+  background-color: #e50914;
+  color: #fff;
+  border: 0;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 2px 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  outline: none;
+  appearance: none;
+  min-width: 150px;
+}
+
+.btn-main:focus {
+ outline: none;
+}
+
+/* styles.css */
+input {
+  padding: 10px 15px;
+  background-color: #333; /* Dark background for input */
+  color: #000; /* White text color */
+  font-size: 16px; /* Comfortable font size */
+  outline: none; /* Remove default focus outline */
+  border: 0;
+}
+
+input::placeholder {
+  color: #777; /* Light grey placeholder text */
+}
+
+input:focus {
+  outline: none;
+}
+
+.modal-popup {
+  max-width: 80%;
+  max-height: 80%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+  max-width: 0;
+  opacity: 0;
+}
+
+.visible {
+  max-width: 100%;
+  opacity: 1;
+}
+.transition {
+  transition: 0.5s ease-in-out;
+}
+.z-sticky {
+  z-index: 1000;
+}
+.btn-secondary{
+  background-color: rgba(109, 109, 110, 0.8);
+  color: white;
+}
+
+
+
