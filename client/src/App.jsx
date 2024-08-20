@@ -10,12 +10,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "./utils/firebase.conf";
 import { useDispatch } from "react-redux";
 import { setIsLoggedIn } from "./state/slice";
+import Player from "./pages/Player";
 
 function App() {
   const dispatch = useDispatch();
   const tabs = [
     { path: "/login", component: <Login /> },
     { path: "/signup", component: <Signup /> },
+    { path: "/player", component: <Player /> },
     { path: "/", component: <Home /> },
   ];
 
@@ -31,7 +33,7 @@ function App() {
     <Router>
       <Routes>
         {tabs.map((tab, ind) => (
-          <Route key={ind} path={tab.path} element={tab.component} />
+          <Route exact key={ind} path={tab.path} element={tab.component} />
         ))}
       </Routes>
     </Router>

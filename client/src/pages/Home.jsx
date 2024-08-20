@@ -7,17 +7,23 @@ import bgImg from "../assets/home.jpg";
 import MovieLogo from "../assets/homeTitle.webp";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies, getGenres } from "../state/slice";
 
 function Home() {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
+  const dispatch = useDispatch();
+  const movies = useSelector(state=>state.netflix.movies);
+  const genres = useSelector(state=>state.netflix.genres);
+  const genresLoaded = useSelector(state=>state.netflix.genresLoaded);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY !== 0);
     };
     window.addEventListener("scroll", handleScroll);
-
+    dispatch(getGenres());
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -31,10 +37,17 @@ function Home() {
     return () => unsubscribe();
   }, [navigate]);
 
+  useEffect(()=>{
+    if(genresLoaded) {
+      dispatch(fetchMovies({type:'all'}));
+    }
+  },[genresLoaded])
+  
+
   return (
     <div className="position-relative h-100 w-100">
       <Header isScrolled={isScrolled} />
-      <div class="h-100 w-100 position-relative">
+      <div className="h-100 w-100 position-relative">
         <img
           src={bgImg}
           alt="Background Image"
@@ -51,7 +64,7 @@ function Home() {
               onClick={() => navigate("/player")}
               className="d-flex justify-center align-items-center p-2 fs-6 btn-main btn-secondary me-2 bg-white text-black opacity-75"
             >
-              <FaPlay className="me-2"/>
+              <FaPlay className="me-2" onClick={()=>navigate('/player')}/>
               Play
             </button>
             <button className="d-flex justify-center align-items-center p-2 fs-6 btn-main btn-secondary ms-2">

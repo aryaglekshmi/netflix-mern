@@ -3,7 +3,7 @@ import appReducer from './slice';
 
 const store = configureStore({
   reducer: {
-    app: appReducer
+    netflix: appReducer
   }
 });
 

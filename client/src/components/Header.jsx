@@ -8,7 +8,7 @@ import { firebaseAuth } from "../utils/firebase.conf";
 
 function Header(props) {
   const navigate = useNavigate();
-  const isLoggedIn = useSelector((state) => state.app.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.netflix.isLoggedIn);
   const [showSearch, setShowSearch] = useState(false);
 
   const tabs = [
