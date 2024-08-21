@@ -1,6 +1,6 @@
 import React from "react";
 import { BsArrowLeft } from "react-icons/bs";
-import video from "./../assets/big_buck_bunny_720p_1mb.mp4";
+import video from "./../assets/video.mp4";
 import { useNavigate } from "react-router-dom";
 
 function Player() {

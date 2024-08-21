@@ -20,6 +20,7 @@
 html,body {
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .icon {
@@ -104,6 +105,13 @@ input:focus {
 .btn-secondary{
   background-color: rgba(109, 109, 110, 0.8);
   color: white;
+}
+.slider-arrow {
+  z-index: 100;
+  cursor: pointer;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 
 

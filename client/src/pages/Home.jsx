@@ -9,24 +9,20 @@ import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, getGenres } from "../state/slice";
+import Slider from "../components/Slider";
 
 function Home() {
   const navigate = useNavigate();
-  const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useDispatch();
   const movies = useSelector(state=>state.netflix.movies);
   const genres = useSelector(state=>state.netflix.genres);
   const genresLoaded = useSelector(state=>state.netflix.genresLoaded);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY !== 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    dispatch(getGenres());
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
+  useEffect(() => {
+    dispatch(getGenres());
+  }, []);
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
       if (!currentUser) {
@@ -45,8 +41,8 @@ function Home() {
   
 
   return (
-    <div className="position-relative h-100 w-100">
-      <Header isScrolled={isScrolled} />
+    <div className="position-relative h-100 w-100 overflow-y-auto overflow-x-hidden">
+      <Header />
       <div className="h-100 w-100 position-relative">
         <img
           src={bgImg}
@@ -62,18 +58,19 @@ function Home() {
           <div className="d-flex justify-space-between py-3">
           <button
               onClick={() => navigate("/player")}
-              className="d-flex justify-center align-items-center p-2 fs-6 btn-main btn-secondary me-2 bg-white text-black opacity-75"
+              className="d-flex justify-space-between align-items-center p-2 fs-6 btn-main btn-secondary me-2 bg-white text-black opacity-75"
             >
               <FaPlay className="me-2" onClick={()=>navigate('/player')}/>
               Play
             </button>
-            <button className="d-flex justify-center align-items-center p-2 fs-6 btn-main btn-secondary ms-2">
+            <button className="d-flex justify-space-between align-items-center p-2 fs-6 btn-main btn-secondary ms-2">
               <AiOutlineInfoCircle className="me-2"/>
               More Info
             </button>
           </div>
         </div>
       </div>
+      <Slider movies={movies}/>
     </div>
   );
 }

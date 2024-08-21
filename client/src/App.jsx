@@ -11,6 +11,9 @@ import { firebaseAuth } from "./utils/firebase.conf";
 import { useDispatch } from "react-redux";
 import { setIsLoggedIn } from "./state/slice";
 import Player from "./pages/Player";
+import Movies from "./pages/Movies";
+import TvShows from "./pages/TvShows";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +21,8 @@ function App() {
     { path: "/login", component: <Login /> },
     { path: "/signup", component: <Signup /> },
     { path: "/player", component: <Player /> },
+    { path: "/movies", component: <Movies /> },
+    { path: "/tv", component: <TvShows /> },
     { path: "/", component: <Home /> },
   ];
 

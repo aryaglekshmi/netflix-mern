@@ -28,7 +28,7 @@ function Header(props) {
   }
 
   return (
-    <div className={`d-flex justify-content-between align-items-center px-4 py-2 position-sticky top-0 z-sticky ${props.isScrolled ? 'bg-black' : 'bg-transparent'}`}>
+    <div className={`d-flex justify-content-between align-items-center px-4 py-2 position-sticky top-0 z-sticky bg-black`}>
       <img
         src={logo}
         alt="Logo"
@@ -42,7 +42,7 @@ function Header(props) {
               <Link
                 to={tab.path}
                 key={ind}
-                className="px-2 text-white text-decoration-none"
+                className="px-4 small text-white text-decoration-none"
               >
                 {tab.name}
               </Link>
