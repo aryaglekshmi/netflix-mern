@@ -25,7 +25,7 @@ export default React.memo(function Card({ index, movie, isLiked = false }) {
 
   const addToList = async () => {
     try {
-      await axios.post("http://localhost:5000/api/user/add", {
+      await axios.post("http://localhost:1000/api/user/movies/like", {
         email,
         data: movie,
       });

@@ -36,6 +36,10 @@ const getUser = async(id) => {
   return await User.findById(id);
 }
 
+const getUserByEmail = async(email) => {
+  return  await User.findOne({email});
+}
+
 const getAllUser = async(query) => {
   return await query ? User.find().sort({_id:-1}).limit(query) : User.find()
 }
@@ -62,6 +66,55 @@ const getUserStats = async () => {
   return data;
 };
 
+const getLikedMovies = (email) => {
+  const user = getUserByEmail(email);
+  if (!user) return user.likedMovies;
+  return null;
+};
+
+const addToLikedMovies  = async (body) => {
+  const { email, data } = body;
+  const user = await User.findOne({email});
+  console.log("🚀 ~ addToLikedMovies ~ user:", user)
+  if(user) {
+    const likedMovies = user.likedMovies || [];
+    const movieAlreadyLiked = likedMovies.find(({ id }) => id === data.id);
+      if (!movieAlreadyLiked) {
+        return await User.findByIdAndUpdate(
+          user._id,
+          {
+            likedMovies: [...user.likedMovies, data],
+          },
+          { new: true }
+        );
+      } 
+  } else {
+    return await User.create({
+      email,
+      likedMovies:[data]
+    })
+  }
+  return null;
+}
+
+const removeFromLikedMovies =  async(body) => {
+  const { email, movieId } = body;
+  const user = getUserByEmail(email);
+  if (user) {
+    const movies = user.likedMovies;
+    const movieIndex = movies.findIndex(({ id }) => id === movieId);
+    if (!movieIndex) return null;
+    movies.splice(movieIndex, 1);
+    return await User.findByIdAndUpdate(
+      user._id,
+      {
+        likedMovies: movies,
+      },
+      { new: true }
+    );
+  }
+  return null;
+}
 
 module.exports = {
   createUser,
@@ -70,5 +123,8 @@ module.exports = {
   deleteUser,
   getUser,
   getAllUser,
-  getUserStats
+  getUserStats,
+  getLikedMovies,
+  addToLikedMovies,
+  removeFromLikedMovies
 };

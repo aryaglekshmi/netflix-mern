@@ -13,6 +13,7 @@ import { setIsLoggedIn } from "./state/slice";
 import Player from "./pages/Player";
 import Movies from "./pages/Movies";
 import TvShows from "./pages/TvShows";
+import UserListedMovies from "./pages/UserListedMovies";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     { path: "/player", component: <Player /> },
     { path: "/movies", component: <Movies /> },
     { path: "/tv", component: <TvShows /> },
+    { path: "/mylist", component: <UserListedMovies /> },
     { path: "/", component: <Home /> },
   ];
 
