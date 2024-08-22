@@ -125,7 +125,7 @@ const addToLikedMovies  = async (req, res)  => {
 
 const removeFromLikedMovies  = async (req, res)  => {
   try {
-    const data = await userService.removeFromLikedMovies();
+    const data = await userService.removeFromLikedMovies(req.body);
     if (!data) {
       return res.status(404).json({ success: false, data: null, message: 'Failed to remove movie from liked list.' });
     }    
