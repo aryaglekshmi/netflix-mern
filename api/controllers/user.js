@@ -101,11 +101,11 @@ const getUserStats  = async (req, res)  => {
 
 const getLikedMovies  = async (req, res)  => {
   try {
-    const data = await userService.getLikedMovies(req.email);
-    if (!data) {
+    const movies = await userService.getLikedMovies(req.params.email);
+    if (!movies) {
       return res.status(404).json({ success: false, data: null, message: 'No liked movies found.' });
     }    
-    res.status(200).json({ success: true, data: data, message: 'Liked movies retrieved successfully.' });
+    res.status(200).json({ success: true, movies, message: 'Liked movies retrieved successfully.' });
   } catch (error) {
     res.status(500).json({ success: false, data: null, message: `Failed to retrieve liked movies: ${error.message}` });
   }

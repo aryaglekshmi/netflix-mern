@@ -66,16 +66,15 @@ const getUserStats = async () => {
   return data;
 };
 
-const getLikedMovies = (email) => {
-  const user = getUserByEmail(email);
-  if (!user) return user.likedMovies;
+const getLikedMovies = async (email) => {
+  const user = await getUserByEmail(email);
+  if (user) return user.likedMovies;
   return null;
 };
 
 const addToLikedMovies  = async (body) => {
   const { email, data } = body;
   const user = await User.findOne({email});
-  console.log("🚀 ~ addToLikedMovies ~ user:", user)
   if(user) {
     const likedMovies = user.likedMovies || [];
     const movieAlreadyLiked = likedMovies.find(({ id }) => id === data.id);
